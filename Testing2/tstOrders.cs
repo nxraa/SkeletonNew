@@ -89,6 +89,42 @@ namespace Testing2
             // Test to see that the two values are the same
             Assert.AreEqual(AnOrders.OrderId, TestData);
         }
+        [TestMethod]
+        public void FindMethod()
+        {
+            // Create an instance of the class we want to create
+            clsOrders AnOrders = new clsOrders();
+            //Bollean variable to store the results of the validation
+            Boolean Found = false;
+            //create some test data to use with the method
+            Int32 QuantityNo = 1;
+            //invoke the method 
+            Found = AnOrders.Find(QuantityNo);
+            //test to see if the result is true
+            Assert.IsTrue(Found);
+        }
+        [TestMethod]
+        public void TestQuantityNoFound()
+        {
+            //create an instance of the class we want to create
+            clsOrders AnOrders = new clsOrders();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 QuantityNo = 1;
+            //invoke the method
+            Found = AnOrders.Find(QuantityNo);
+            //check the address no
+            if (AnOrders.QuantityNo != 1)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
 
     }
 }
