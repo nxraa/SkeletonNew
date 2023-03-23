@@ -22,7 +22,7 @@ namespace ClassLibrary
             set 
             {
                 //set the value of the private data member
-                mQuantityNo = value;
+                mQuantityNo = value; 
             }
         }
  
