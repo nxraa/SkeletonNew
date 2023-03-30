@@ -23,7 +23,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         AnOrders.ProductId = Convert.ToInt32(txtProductId.Text);
         AnOrders.QuantityNo = Convert.ToInt32(txtQuantity.Text);
         AnOrders.Completed = chkOrderCompleted.Checked;
-        AnOrders.Date = Convert.ToDateTime(txtOrderDate.Text);
+        AnOrders.OrderDate = Convert.ToDateTime(txtOrderDate.Text);
         //store the orders in the session object
         Session["AnOrders"] = AnOrders;
         //navigate to the viewer page
