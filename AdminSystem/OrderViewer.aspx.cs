@@ -19,7 +19,7 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write(AnOrders.OrderId);
         Response.Write(AnOrders.ProductId);
         Response.Write(AnOrders.QuantityNo);
-        Response.Write(AnOrders.Completed);
+        Response.Write(AnOrders.OrderCompleted);
         Response.Write(AnOrders.OrderDate);
 
     }
