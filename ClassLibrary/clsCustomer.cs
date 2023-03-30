@@ -93,7 +93,7 @@ namespace ClassLibrary
             public bool Find(int iD)
         {
             clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@ID", iD);
+            DB.AddParameter("@ID", iD); 
             DB.Execute("sproc_tblCustomer_FilterByCustomerID");
             if (DB.Count == 1)
             {
@@ -110,6 +110,20 @@ namespace ClassLibrary
             {
                 return false;
             }
+        }
+
+        public string Valid(string name, string email, string pass, string active, string dateAdded)
+        {
+            String Error = "";
+            if (name.Length == 0)
+            {
+                Error = Error + "The name may not be blank : ";
+            }
+            if(name.Length > 6)
+            {
+                Error = Error + "The name must be less than 6 characters : ";
+            }
+            return Error;
         }
     }
 }
