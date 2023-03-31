@@ -201,7 +201,7 @@ namespace Testing1
         {
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -213,7 +213,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Name = "";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
             Assert.AreNotEqual(Error, "");
 
         }
@@ -224,7 +224,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Name = "a";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -235,7 +235,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Name = "aa";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -246,7 +246,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Name = "aaaa";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -257,7 +257,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Name = "aaaaaa";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -269,7 +269,7 @@ namespace Testing1
             string Error = "";
             string Name = "";
             Name = Name.PadRight(500, 'a');
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreNotEqual(Error, "");
 
         }
@@ -280,7 +280,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Name = "aaa";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -291,7 +291,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Name = "aaaaaaa";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreNotEqual(Error, "");
 
         }
@@ -306,7 +306,7 @@ namespace Testing1
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-100);
             string DateAdded = TestDate.ToString();
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
             Assert.AreNotEqual(Error, "");
 
         }
@@ -320,7 +320,7 @@ namespace Testing1
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(-1);
             string DateAdded = TestDate.ToString();
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
             Assert.AreNotEqual(Error, "");
 
         }
@@ -333,7 +333,7 @@ namespace Testing1
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             string DateAdded = TestDate.ToString();
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -347,7 +347,7 @@ namespace Testing1
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(1);
             string DateAdded = TestDate.ToString();
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreNotEqual(Error, "");
 
         }
@@ -361,7 +361,7 @@ namespace Testing1
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(100);
             string DateAdded = TestDate.ToString();
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
             Assert.AreNotEqual(Error, "");
 
         }
@@ -372,7 +372,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string DateAdded = "this is not a date!";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
             Assert.AreNotEqual(Error, "");
 
         }
@@ -383,7 +383,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Email = "";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
             Assert.AreNotEqual(Error, "");
 
         }
@@ -394,7 +394,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Email = "a";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -407,7 +407,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Email = "aa";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -419,7 +419,7 @@ namespace Testing1
             string Error = "";
             string Email = "";
             Email = Email.PadRight(29, 'a');
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -431,7 +431,7 @@ namespace Testing1
             string Error = "";
             string Email = "";
             Email = Email.PadRight(30, 'a');
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -442,7 +442,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Email = "";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
             Assert.AreNotEqual(Error, "");
 
         }
@@ -454,7 +454,7 @@ namespace Testing1
             string Error = "";
             string Email = "";
             Email = Email.PadRight(15, 'a');
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -464,7 +464,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Pass = "";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreNotEqual(Error, "");
 
         }
@@ -475,7 +475,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Pass = "a";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -488,7 +488,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Pass = "aa";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -500,7 +500,7 @@ namespace Testing1
             string Error = "";
             string Pass= "";
             Pass = Pass.PadRight(49, 'a');
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -512,7 +512,7 @@ namespace Testing1
             string Error = "";
             string Pass = "";
             Pass = Pass.PadRight(50, 'a');
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -523,7 +523,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Pass = "";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreNotEqual(Error, "");
 
         }
@@ -535,7 +535,7 @@ namespace Testing1
             string Error = "";
             string Pass = "";
             Pass = Pass.PadRight(25, 'a');
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
             Assert.AreEqual(Error, "");
         }
 

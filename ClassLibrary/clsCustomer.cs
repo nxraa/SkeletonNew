@@ -112,7 +112,7 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string name, string email, string pass, string active, string dateAdded)
+        public string Valid(string name, string email, string pass, string dateAdded)
         {
             String Error = "";
             DateTime DateTemp;
