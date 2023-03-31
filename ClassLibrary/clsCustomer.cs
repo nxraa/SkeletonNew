@@ -112,17 +112,53 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string name, string email, string pass, string active, string dateAdded)
+        public string Valid(string name, string email, string pass, string dateAdded)
         {
             String Error = "";
+            DateTime DateTemp;
+
             if (name.Length == 0)
             {
                 Error = Error + "The name may not be blank : ";
             }
-            if(name.Length > 6)
+            if (name.Length > 6)
             {
                 Error = Error + "The name must be less than 6 characters : ";
             }
+            if (email.Length == 0)
+            {
+                Error = Error + "The email may not be blank : ";
+            }
+            if (email.Length > 30)
+            {
+                Error = Error + "The email must be less than 30 characters : ";
+            }
+            if (pass.Length == 0)
+            {
+                Error = Error + "The password may not be blank : ";
+            }
+            if (pass.Length > 50)
+            {
+                Error = Error + "The password must be less than 50 characters : ";
+            }
+
+            try
+            {
+                DateTemp = Convert.ToDateTime(dateAdded);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the past: ";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future: ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date was not a valid date";
+            }
+
             return Error;
         }
     }

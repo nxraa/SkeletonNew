@@ -13,7 +13,7 @@ namespace Testing1
         string Email = "aaron04@gmail.com";
         string DateAdded = DateTime.Now.Date.ToString();
         string Active = "true";
-        
+
 
 
         [TestMethod]
@@ -201,7 +201,7 @@ namespace Testing1
         {
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -213,7 +213,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Name = "";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
             Assert.AreNotEqual(Error, "");
 
         }
@@ -224,7 +224,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Name = "a";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -235,7 +235,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Name = "aa";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -246,7 +246,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Name = "aaaa";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -257,8 +257,20 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Name = "aaaaaa";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void NameExtremeMax()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Name = "";
+            Name = Name.PadRight(500, 'a');
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
+            Assert.AreNotEqual(Error, "");
 
         }
         [TestMethod]
@@ -268,7 +280,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Name = "aaa";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
@@ -279,9 +291,253 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
             string Name = "aaaaaaa";
-            Error = aCustomer.Valid(Name, Email, Pass, Active, DateAdded);
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void DateAddedExtremeMin()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100);
+            string DateAdded = TestDate.ToString();
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void DateAddedMinLessOne()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(-1);
+            string DateAdded = TestDate.ToString();
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void DateAddedMin()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            string DateAdded = TestDate.ToString();
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
         }
+        [TestMethod]
+
+        public void DateAddedMinPlusOne()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1);
+            string DateAdded = TestDate.ToString();
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void DateAddedExtremeMax()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100);
+            string DateAdded = TestDate.ToString();
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void DateAddedInvalidData()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string DateAdded = "this is not a date!";
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void EmailMinLessOne()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Email = "";
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void EmailMin()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Email = "a";
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
+            Assert.AreEqual(Error, "");
+
+        }
+
+
+        [TestMethod]
+
+        public void EmailMinPlusOne()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Email = "aa";
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void EmailMaxLessOne()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Email = "";
+            Email = Email.PadRight(29, 'a');
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void EmailMax()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Email = "";
+            Email = Email.PadRight(30, 'a');
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void EmailMaxPlusOne()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Email = "";
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void EmailMid()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Email = "";
+            Email = Email.PadRight(15, 'a');
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+
+        public void PassMinLessOne()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Pass = "";
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void PassMin()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Pass = "a";
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
+            Assert.AreEqual(Error, "");
+
+        }
+
+
+        [TestMethod]
+
+        public void PassMinPlusOne()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Pass = "aa";
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void PassMaxLessOne()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Pass= "";
+            Pass = Pass.PadRight(49, 'a');
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void PassMax()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Pass = "";
+            Pass = Pass.PadRight(50, 'a');
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void PassMaxPlusOne()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Pass = "";
+            Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void PassMid()
+        {
+            clsCustomer aCustomer = new clsCustomer();
+            string Error = "";
+            string Pass = "";
+            Pass = Pass.PadRight(25, 'a');
+            Error = aCustomer.Valid(Name, Email, Pass,  DateAdded);
+            Assert.AreEqual(Error, "");
+        }
+
     }
 }

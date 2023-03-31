@@ -17,15 +17,30 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
 
         clsCustomer aCustomer = new clsCustomer();
-        aCustomer.ID = Convert.ToInt32(txtCustomerID.Text);
-        aCustomer.Name = txtName.Text;
-        aCustomer.Email = txtEmail.Text;
-        aCustomer.Pass = txtPassword.Text;
+        string ID = txtCustomerID.Text;
+        string Name = txtName.Text;
+        string Email = txtEmail.Text;
+        string DateAdded = txtDate.Text;
+        string Pass = txtPassword.Text;
         aCustomer.Active = chkActive.Checked;
+        string Error = "";
+        Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
+        if (Error == "")
+        {
+            aCustomer.ID = Convert.ToInt32(txtCustomerID.Text);
+            aCustomer.Name = Name;
+            aCustomer.Email = Email;
+            aCustomer.Pass = Pass;
+            aCustomer.Active = chkActive.Checked;
+            aCustomer.DateAdded = Convert.ToDateTime(DateAdded);
 
-        Session["aCustomer"] = aCustomer;
-        Response.Redirect("CustomerViewer.aspx");
-
+            Session["aCustomer"] = aCustomer;
+            Response.Redirect("CustomerViewer.aspx");
+        }
+        else
+        {
+            Label3.Text = Error;
+        }
     }
 
     protected void txtCustomerID_TextChanged(object sender, EventArgs e)
