@@ -101,9 +101,9 @@ namespace Testing2
             //Bollean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 QuantityNo = 1;
+            Int32 OrderId = 1;
             //invoke the method 
-            Found = AnOrders.Find(QuantityNo);
+            Found = AnOrders.Find(OrderId);
             //test to see if the result is true
             Assert.IsTrue(Found);
         }
@@ -144,7 +144,7 @@ namespace Testing2
             //invoke the method
             Found = AnOrders.Find(OrderId);
             //check the property
-            if (AnOrders.OrderDate != Convert.ToDateTime("16/09/2015"))
+            if (AnOrders.OrderDate != Convert.ToDateTime("12/02/2023"))
             {
                 OK = false;
             }
@@ -184,7 +184,7 @@ namespace Testing2
             //invoke the method
             Found = AnOrders.Find(OrderId);
             //check the property
-            if (AnOrders.ProductId != 31)
+            if (AnOrders.ProductId != 1)
             {
                 OK = false;
             }
