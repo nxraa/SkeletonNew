@@ -30,4 +30,30 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Response.Redirect("OrderViewer.aspx");
 
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create an instance of the orders class
+        clsOrders AnOrders = new clsOrders();
+        //variable to store the primary key
+        Int32 OrderId;
+        //variable to store the result of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user
+        OrderId = Convert.ToInt32(txtOrderId.Text);
+        //find the record
+        Found = AnOrders.Find(OrderId);
+        //if found
+        if (Found == true) 
+        {
+            txtOrderId.Text = AnOrders.OrderId.ToString();
+            txtDeliveryType.Text = AnOrders.DeliveryType;
+            txtProductId.Text = AnOrders.ProductId.ToString();
+            txtQuantity.Text = AnOrders.QuantityNo.ToString();
+            txtOrderDate.Text = AnOrders.OrderDate.ToString();
+            chkOrderCompleted.Checked = AnOrders.OrderCompleted;
+        
+        
+        }
+    }
 }
