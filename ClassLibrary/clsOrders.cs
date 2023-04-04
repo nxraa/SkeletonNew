@@ -136,6 +136,77 @@ namespace ClassLibrary
             }
         }
 
+        public string Valid(string deliveryType, string productId, string quantityNo, string orderDate)
+        {
+            String Error = "";
+
+            //create a temporary variable to store date values
+            DateTime DateTemp;
+
+
+            if (deliveryType.Length == 0)
+            {
+                Error = Error + "The delivery type can't be blank : ";
+            }
+            if (deliveryType.Length > 10)
+            {
+                Error = Error + "The delivery type can't be bigger than 10 characters : ";
+            }
+
+          try
+          {
+
+              
+            //copy the OrderDate value to the DateTemp variable
+            DateTemp = Convert.ToDateTime(orderDate);
+            if (DateTemp < DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the past: ";
+            }
+            if (DateTemp > DateTime.Now.Date)
+            {
+                //record the error
+                Error = Error + "The date cannot be in the future : ";
+            }
+          }
+          catch
+          {
+               Error = Error + "The date was not a valid date : ";
+          }
+
+
+
+            if(!int.TryParse(productId.ToString(), out int parsedProductId))
+            {
+                Error = Error + "The Product Id must be an integer : ";
+            }
+            if (productId.ToString().Length == 0)
+          {
+                Error = Error + "The Product Id cannot be blank : ";
+          }
+            if (productId.ToString().Length > 5)
+            {
+                Error = Error + "The Product Id cannot be bigger than 5 characters : ";
+            }
+
+
+            if (!int.TryParse(quantityNo.ToString(), out int parsedQuantityNo))
+            {
+                Error = Error + "The Quantity No must be an integer : ";
+            }
+            if (quantityNo.ToString().Length == 0)
+            {
+                Error = Error + "The Quantity No cannot be blank : ";
+            }
+            if (quantityNo.ToString().Length > 3)
+            {
+                Error = Error + "The Quantity No cannot be bigger than 3 characters  : ";
+            }
+            return Error;
+        }
+
+
+
 
     }
 }
