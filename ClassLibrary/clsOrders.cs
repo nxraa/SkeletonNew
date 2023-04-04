@@ -176,33 +176,45 @@ namespace ClassLibrary
 
 
 
-            if(!int.TryParse(productId.ToString(), out int parsedProductId))
+            switch (productId.ToString().Length)
             {
-                Error = Error + "The Product Id must be an integer : ";
+                case 0:
+                    Error = Error + "The Product Id cannot be blank : ";
+                    break;
+                case int n when n > 5:
+                    Error = Error + "The Product Id cannot be bigger than 5 characters : ";
+                    break;
+                default:
+                    if (!int.TryParse(productId.ToString(), out int parsedProductId))
+                    {
+                        Error = Error + "The Product Id must be an integer : ";
+                    }
+                    break;
             }
-            if (productId.ToString().Length == 0)
-          {
-                Error = Error + "The Product Id cannot be blank : ";
-          }
-            if (productId.ToString().Length > 5)
+
+            switch (quantityNo.ToString().Length)
             {
-                Error = Error + "The Product Id cannot be bigger than 5 characters : ";
+                case 0:
+                    Error = Error + "The Quantity No cannot be blank : ";
+                    break;
+                case int n when n > 3:
+                    Error = Error + "The Quantity No cannot be bigger than 3 characters : ";
+                    break;
+                default:
+                    if (!int.TryParse(quantityNo.ToString(), out int parsedQuantityNo))
+                    {
+                        Error = Error + "The Quantity No must be an integer : ";
+                    }
+                    break;
             }
 
 
-            if (!int.TryParse(quantityNo.ToString(), out int parsedQuantityNo))
-            {
-                Error = Error + "The Quantity No must be an integer : ";
-            }
-            if (quantityNo.ToString().Length == 0)
-            {
-                Error = Error + "The Quantity No cannot be blank : ";
-            }
-            if (quantityNo.ToString().Length > 3)
-            {
-                Error = Error + "The Quantity No cannot be bigger than 3 characters  : ";
-            }
+
             return Error;
+
+
+
+
         }
 
 

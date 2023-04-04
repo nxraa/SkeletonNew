@@ -15,20 +15,35 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOk_Click(object sender, EventArgs e)
     {
+
         //create a new instance of clsOrders
         clsOrders AnOrders = new clsOrders();
-        //capture the devivery type
-        AnOrders.DeliveryType = txtDeliveryType.Text;
-        AnOrders.OrderId = Convert.ToInt32(txtOrderId.Text);
-        AnOrders.ProductId = Convert.ToInt32(txtProductId.Text);
-        AnOrders.QuantityNo = Convert.ToInt32(txtQuantity.Text);
-        AnOrders.OrderCompleted = chkOrderCompleted.Checked;
-        AnOrders.OrderDate = Convert.ToDateTime(txtOrderDate.Text);
-        //store the orders in the session object
-        Session["AnOrders"] = AnOrders;
-        //navigate to the viewer page
-        Response.Redirect("OrderViewer.aspx");
+        string DeliveryType = txtDeliveryType.Text;
+        string ProductId = txtProductId.Text;
+        string QuantityNo = txtQuantity.Text;
+        string OrderDate = txtOrderDate.Text;
+        AnOrders.OrderCompleted = chkOrderCompleted.Checked;// add to add it so chek box would work
+        //variable to store any error messages
+        string Error = "";
+        //Validate the data
+        Error = AnOrders.Valid(DeliveryType, ProductId, QuantityNo, OrderDate);
+        if (Error == "")
+        {
+            AnOrders.DeliveryType = DeliveryType;
+            AnOrders.ProductId = Convert.ToInt32(ProductId);
+            AnOrders.QuantityNo = Convert.ToInt32(QuantityNo);
+            AnOrders.OrderDate = Convert.ToDateTime(OrderDate);
+            Session["AnOrders"] = AnOrders;
+            Response.Redirect("OrderViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
 
+
+        }
+         
     }
 
     protected void btnFind_Click(object sender, EventArgs e)

@@ -15,12 +15,11 @@ public partial class _1Viewer : System.Web.UI.Page
         //get the data from the session object
         AnOrders = (clsOrders)Session["AnOrders"];
         //display the delivery type for this entry
-        Response.Write(AnOrders.DeliveryType);
         Response.Write(AnOrders.OrderId);
+        Response.Write(AnOrders.DeliveryType);
         Response.Write(AnOrders.ProductId);
         Response.Write(AnOrders.QuantityNo);
-        Response.Write(AnOrders.OrderCompleted);
         Response.Write(AnOrders.OrderDate);
-
+        Response.Write(AnOrders.OrderCompleted);
     }
 }
