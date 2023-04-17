@@ -97,8 +97,6 @@ namespace ClassLibrary
 
         public bool Find(int ProductId)
         {
-            //string s =  "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = H:\\Local databse\\App_Data\\AddressBook1.mdf; Integrated Security = True; Connect Timeout = 30";
-
             // return true;
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@ProductId", ProductId);
@@ -108,7 +106,7 @@ namespace ClassLibrary
                 mProductId = Convert.ToInt32(DB.DataTable.Rows[0]["ProductId"]);
                 mName = Convert.ToString(DB.DataTable.Rows[0]["Name"]);
                 mDescription = Convert.ToString(DB.DataTable.Rows[0]["Description"]);
-                mPrice = Convert.ToInt32(DB.DataTable.Rows[0]["Price"]);
+                mPrice = Convert.ToSingle(DB.DataTable.Rows[0]["Price"]);
                 mStockLevel = Convert.ToInt32(DB.DataTable.Rows[0]["StockLevel"]);
                 mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
                 mAvailableInStore = Convert.ToBoolean(DB.DataTable.Rows[0]["AvailableInStore"]);
@@ -118,6 +116,94 @@ namespace ClassLibrary
             {
                 return false;
             }
+        }
+
+        public string Valid(string Name, string Description, string Price, string StockLevel, string DateAdded)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store date values
+            DateTime DateTemp;
+            //create a temporary variable to store the price
+            float TempPrice;
+            //create a temporary variable to store the stock level
+            Int32 TempStockLevel;
+            //if the name is blank
+            if (Name.Length == 0)
+            {
+                Error = Error + "The name shouldn't be blank : ";
+            }
+            // if the name is longer than 10 characters
+            if (Name.Length > 10)
+            {
+                //record the error
+                Error = Error + "The name must not be less than 10 character : ";
+            }
+            try
+            {
+                //copy the dateadded value to the datetemp variable
+                DateTemp = Convert.ToDateTime(DateAdded);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //Record the error 
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+            if (Description.Length == 0)
+            {
+                Error = Error + "The description shouldn't be blank : ";
+            }
+            // if the name is longer than 10 characters
+            if (Description.Length > 50)
+            {
+                //record the error
+                Error = Error + "The description must not be less than 50 character : ";
+            }
+            try
+            {
+                TempPrice = Convert.ToSingle(Price);
+                if (TempPrice < 0)
+                {
+                    Error = Error + "The price cant be less than 0 : ";
+                }
+                if (TempPrice > 2000)
+                {
+                    Error = Error + "The price cant be over 2000 : ";
+                }
+            }
+            catch
+            {
+                Error += "The price should be a number : ";
+            }
+            try
+            {
+                TempStockLevel = Convert.ToInt32(StockLevel);
+                if (TempStockLevel < 0)
+                {
+                    Error = Error + "The stock level can't be below 0 : ";
+                }
+                if (TempStockLevel > 2000)
+                {
+                    Error = Error + "The stock level can be over 2000 : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The stock level should be a number : ";
+            }
+            //return any error messages
+            return Error;
         }
     }
 }
