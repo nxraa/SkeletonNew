@@ -29,18 +29,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AnOrders.Valid(DeliveryType, ProductId, QuantityNo, OrderDate);
         if (Error == "")
         {
+            //capture
             AnOrders.DeliveryType = DeliveryType;
             AnOrders.ProductId = Convert.ToInt32(ProductId);
             AnOrders.QuantityNo = Convert.ToInt32(QuantityNo);
             AnOrders.OrderDate = Convert.ToDateTime(OrderDate);
-            Session["AnOrders"] = AnOrders;
-            Response.Redirect("OrderViewer.aspx");
+            AnOrders.OrderCompleted = chkOrderCompleted.Checked;
+            //create new instance of the orders collection
+            clsOrdersCollection OrdersList = new clsOrdersCollection();
+            //set the ThisOrder Property
+            OrdersList.ThisOrder = AnOrders;
+            //add the new record
+            OrdersList.Add();
+            //redirect back to the listpage
+            Response.Redirect("OrderList.aspx");
         }
         else
         {
             //display the error message
             lblError.Text = Error;
-
 
         }
          
