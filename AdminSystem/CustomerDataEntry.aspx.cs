@@ -64,7 +64,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         ID = Convert.ToInt32(txtCustomerID.Text);
         Found = aCustomer.Find(ID);
 
-        if(Found == true)
+        if (Found == true)
         {
             txtName.Text = aCustomer.Name;
             txtEmail.Text = aCustomer.Email;
