@@ -8,7 +8,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div style="height: 436px">
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 377px; top: 55px; position: absolute" Text="Find" />
         </div>
         <asp:Label ID="lblCustomerID" runat="server" style="z-index: 1; left: 26px; top: 56px; position: absolute" Text="Customer ID" width="199px"></asp:Label>
         <asp:TextBox ID="txtCustomerID" runat="server" style="z-index: 1; left: 229px; top: 56px; position: absolute" width="128px" OnTextChanged="txtCustomerID_TextChanged" height="22px"></asp:TextBox>
@@ -30,9 +31,9 @@
             &nbsp;</p>
         <p style="width: 199px; height: 22px">
             &nbsp;</p>
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 172px; top: 344px; position: absolute; width: 68px;" Text="Cancel" OnClick="btnCancel_Click" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; right: 1294px; top: 372px; position: absolute; width: 66px;" Text="Cancel" OnClick="btnCancel_Click" />
         <p>
-        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click1" style="z-index: 1; left: 107px; top: 343px; position: absolute; right: 1370px; height: 24px;" Text="OK" />
+        <asp:Button ID="btnOK" runat="server"  style="z-index: 1; left: 67px; top: 373px; position: absolute; width: 47px;" Text="OK" OnClick="btnOK_Click1" />
         </p>
     </form>
 </body>

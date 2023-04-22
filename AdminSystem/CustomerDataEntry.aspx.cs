@@ -55,4 +55,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
 
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsCustomer aCustomer = new clsCustomer();
+        Int32 ID;
+        Boolean Found = false;
+        ID = Convert.ToInt32(txtCustomerID.Text);
+        Found = aCustomer.Find(ID);
+
+        if(Found == true)
+        {
+            txtName.Text = aCustomer.Name;
+            txtEmail.Text = aCustomer.Email;
+            txtPassword.Text = aCustomer.Pass;
+            txtDate.Text = aCustomer.DateAdded.ToString();
+            chkActive.Checked = aCustomer.Active;
+        }
+    }
 }
