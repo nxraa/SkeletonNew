@@ -17,25 +17,28 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
 
         clsCustomer aCustomer = new clsCustomer();
-        string ID = txtCustomerID.Text;
+      
         string Name = txtName.Text;
         string Email = txtEmail.Text;
         string DateAdded = txtDate.Text;
         string Pass = txtPassword.Text;
-        aCustomer.Active = chkActive.Checked;
         string Error = "";
         Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
         if (Error == "")
         {
-            aCustomer.ID = Convert.ToInt32(txtCustomerID.Text);
+            
             aCustomer.Name = Name;
             aCustomer.Email = Email;
             aCustomer.Pass = Pass;
-            aCustomer.Active = chkActive.Checked;
             aCustomer.DateAdded = Convert.ToDateTime(DateAdded);
+            aCustomer.Active = chkActive.Checked;
 
-            Session["aCustomer"] = aCustomer;
-            Response.Redirect("CustomerViewer.aspx");
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            CustomerList.ThisCustomer = aCustomer;
+            CustomerList.Add();
+
+            
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {
@@ -44,6 +47,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
     }
 
     protected void txtCustomerID_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
     {
 
     }

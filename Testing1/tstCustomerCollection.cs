@@ -69,6 +69,26 @@ namespace Testing1
 
 
         }
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.Active = true;
+            TestItem.ID = 1;
+            TestItem.Name = "bronny";
+            TestItem.Email = "bron05@gmail.com";
+            TestItem.Pass = "bronny";
+            TestItem.DateAdded = DateTime.Now.Date;
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.ID = PrimaryKey;
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+
+
+        }
     }
 
 
