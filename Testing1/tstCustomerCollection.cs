@@ -139,6 +139,56 @@ namespace Testing1
 
         }
 
+        [TestMethod]
+
+        public void ReportByNameMethodOK()
+        {
+            clsCustomerCollection AllCustomer = new clsCustomerCollection();
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            FilteredCustomers.ReportByName("");
+            Assert.AreEqual(AllCustomer.Count, FilteredCustomers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByNameNoneFound()
+        {
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            FilteredCustomers.ReportByName("xxxxx");
+            Assert.AreEqual(0, FilteredCustomers.Count);
+
+        }
+
+        [TestMethod]
+        public void ReportByNameTestDataFound()
+        {
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            Boolean OK = true;
+            //apply a name that does not exist
+            FilteredCustomers.ReportByName("CCC");
+            //check if that the correct number of records are found
+            if(FilteredCustomers.Count == 2)
+            {
+
+                if(FilteredCustomers.CustomerList[0].ID != 109)
+                {
+                    OK = false;
+                }
+                if (FilteredCustomers.CustomerList[1].ID != 110)
+                {
+                    OK = false;
+                }
+
+            }
+            else
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK); 
+
+        }
+
+
 
     }
 
