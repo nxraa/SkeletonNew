@@ -46,12 +46,20 @@ namespace ClassLibrary
 
         public clsCustomerCollection()
         {
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblCustomer_SelectAll");
+            PopulateArray(DB);
+
+
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount;
             RecordCount = DB.Count;
-            while(Index < RecordCount)
+            mCustomerList = new List<clsCustomer>();
+            while (Index < RecordCount)
             {
                 clsCustomer aCustomer = new clsCustomer();
                 aCustomer.Active = Convert.ToBoolean(DB.DataTable.Rows[Index]["AccountActive"]);
@@ -61,8 +69,9 @@ namespace ClassLibrary
                 aCustomer.Pass = Convert.ToString(DB.DataTable.Rows[Index]["CustomerPass"]);
                 aCustomer.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[Index]["CustomerDate"]);
                 mCustomerList.Add(aCustomer);
-                Index ++;
+                Index++;
             }
+
         }
 
         public int Add()
@@ -96,5 +105,16 @@ namespace ClassLibrary
             DB.AddParameter("@CustomerID", mThisCustomer.ID);
             DB.Execute("sproc_tblCustomer_Delete");
         }
+
+        
+
+        public void ReportByName(string Name)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerName", Name);
+            DB.Execute("sproc_tblCustomer_FilterByCustomerName");
+            PopulateArray(DB);
+        }
+        
     }
 }
