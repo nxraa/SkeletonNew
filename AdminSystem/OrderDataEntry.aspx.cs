@@ -8,9 +8,23 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 OrderId;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of address to be processed
+        OrderId = Convert.ToInt32(Session["OrderId"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (OrderId != -1) 
+            {
+                //display the current data for the record
+                DisplayOrders();
+            }
 
+
+        }
     }
 
     protected void btnOk_Click(object sender, EventArgs e)
@@ -30,6 +44,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             //capture
+            AnOrders.OrderId = OrderId; //don't miss this bit
             AnOrders.DeliveryType = DeliveryType;
             AnOrders.ProductId = Convert.ToInt32(ProductId);
             AnOrders.QuantityNo = Convert.ToInt32(QuantityNo);
@@ -37,10 +52,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrders.OrderCompleted = chkOrderCompleted.Checked;
             //create new instance of the orders collection
             clsOrdersCollection OrdersList = new clsOrdersCollection();
-            //set the ThisOrder Property
-            OrdersList.ThisOrder = AnOrders;
-            //add the new record
-            OrdersList.Add();
+            
+            //if this is a new record i.e. OrderId = -1 then add the data
+            if(OrderId == -1) 
+            {
+                 //set the ThisOrder Property
+                OrdersList.ThisOrder = AnOrders;
+                //add the new record
+                 OrdersList.Add();
+            }
+            else 
+            {
+                //find the record to update
+                OrdersList.ThisOrder.Find(OrderId);
+                //set the ThisOrder property
+                OrdersList.ThisOrder = AnOrders;
+                //update the record
+                OrdersList.Update();
+            }      
+
             //redirect back to the listpage
             Response.Redirect("OrderList.aspx");
         }
@@ -78,4 +108,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
         
         }
     }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        txtOrderId.Text = "";
+        txtDeliveryType.Text = "";
+        txtProductId.Text = "";
+        txtQuantity.Text = "";
+        txtOrderDate.Text = "";
+        chkOrderCompleted.Checked = false;
+    }
+    void DisplayOrders() 
+    {
+        clsOrdersCollection OrderBook = new clsOrdersCollection();
+        //find the record to update
+        OrderBook.ThisOrder.Find(OrderId);
+        //display the data for this record
+        txtOrderId.Text = OrderBook.ThisOrder.OrderId.ToString();
+        txtDeliveryType.Text = OrderBook.ThisOrder.DeliveryType;
+        txtProductId.Text = OrderBook.ThisOrder.ProductId.ToString();
+        txtQuantity.Text = OrderBook.ThisOrder.QuantityNo.ToString();
+        txtOrderDate.Text = OrderBook.ThisOrder.OrderDate.ToString();
+        chkOrderCompleted.Checked = OrderBook.ThisOrder.OrderCompleted;
+
+    }
+
 }
