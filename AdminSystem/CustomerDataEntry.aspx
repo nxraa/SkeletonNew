@@ -31,9 +31,9 @@
             &nbsp;</p>
         <p style="width: 199px; height: 22px">
             &nbsp;</p>
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; right: 1294px; top: 372px; position: absolute; width: 66px;" Text="Cancel" OnClick="btnCancel_Click" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 100px; top: 336px; position: absolute; width: 66px;" Text="Cancel" OnClick="btnCancel_Click" />
         <p>
-        <asp:Button ID="btnOK" runat="server"  style="z-index: 1; left: 67px; top: 373px; position: absolute; width: 47px;" Text="OK" OnClick="btnOK_Click1" />
+        <asp:Button ID="btnOK" runat="server"  style="z-index: 1; left: 39px; top: 336px; position: absolute; width: 47px;" Text="OK" OnClick="btnOK_Click1" />
         </p>
     </form>
 </body>

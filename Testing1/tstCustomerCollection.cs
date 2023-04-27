@@ -169,11 +169,11 @@ namespace Testing1
             if(FilteredCustomers.Count == 2)
             {
 
-                if(FilteredCustomers.CustomerList[0].ID != 109)
+                if(FilteredCustomers.CustomerList[0].ID != 10)
                 {
                     OK = false;
                 }
-                if (FilteredCustomers.CustomerList[1].ID != 110)
+                if (FilteredCustomers.CustomerList[1].ID != 11)
                 {
                     OK = false;
                 }

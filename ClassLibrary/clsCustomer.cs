@@ -121,7 +121,7 @@ namespace ClassLibrary
             {
                 Error = Error + "The name may not be blank : ";
             }
-            if (name.Length > 6)
+            if (name.Length > 50)
             {
                 Error = Error + "The name must be less than 6 characters : ";
             }
