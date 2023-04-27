@@ -161,7 +161,7 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void TestDeliveryType()
+        public void TestDeliveryTypeFound()
         {
             
             clsOrders AnOrders = new clsOrders();
@@ -179,7 +179,7 @@ namespace Testing2
             
         }
         [TestMethod]
-        public void TestProductId()
+        public void TestProductIdFound()
         {
             //create an instance of the class we want to create
             clsOrders AnOrders = new clsOrders();
@@ -201,7 +201,7 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void TestQuantity()
+        public void TestQuantityFound()
         {
             //create an instance of the class we want to create
             clsOrders AnOrders = new clsOrders();
@@ -222,7 +222,7 @@ namespace Testing2
             Assert.IsTrue(OK);
         }
         [TestMethod]
-        public void TestOrderCompleted()
+        public void TestOrderCompletedFound()
         {
             //create an instance of the class we want to create
             clsOrders AnOrders = new clsOrders();
@@ -400,7 +400,7 @@ namespace Testing2
             DateTime TestDate;
             //set the date totodays date
             TestDate = DateTime.Now.Date;
-            //change the date to whatever the date is plus 1 day
+            //change the date to whatever the date is plus 100 years
             TestDate = TestDate.AddYears(100);
             //convert the date variable to a string variable
             string OrderDate = TestDate.ToString();
