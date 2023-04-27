@@ -219,13 +219,13 @@ namespace TestStockCollection
             //check that the correct number of records are found
             if (FilteredStocks.Count == 2)
             {
-                //check that the first record is ID 21
-                if (FilteredStocks.StockList[0].ProductId != 21)
+                //check that the first record is ID 16
+                if (FilteredStocks.StockList[0].ProductId != 16)
                 {
                     Ok = false;
                 }
-                //check that the first record is ID 22
-                if (FilteredStocks.StockList[1].ProductId != 22)
+                //check that the first record is ID 17
+                if (FilteredStocks.StockList[1].ProductId != 17)
                 {
                     Ok = false;
                 }
