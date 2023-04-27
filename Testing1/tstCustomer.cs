@@ -93,7 +93,7 @@ namespace Testing1
         {
             clsCustomer aCustomer = new clsCustomer();
             Boolean Found = false;
-            Int32 ID = 2;
+            Int32 ID = 3;
             Found = aCustomer.Find(ID);
             Assert.IsTrue(Found);
         }
@@ -105,7 +105,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ID = 2;
+            Int32 ID = 3;
             Found = aCustomer.Find(ID);
             if (aCustomer.Name != "Harry")
             {
@@ -122,9 +122,9 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ID = 2;
+            Int32 ID = 3;
             Found = aCustomer.Find(ID);
-            if (aCustomer.ID != 2)
+            if (aCustomer.ID != 3)
             {
                 OK = false;
             }
@@ -139,9 +139,9 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ID = 2;
+            Int32 ID = 3;
             Found = aCustomer.Find(ID);
-            if (aCustomer.DateAdded != Convert.ToDateTime("15/05/2022"))
+            if (aCustomer.DateAdded != Convert.ToDateTime("15/05/2023"))
             {
                 OK = false;
             }
@@ -155,7 +155,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ID = 2;
+            Int32 ID = 3;
             Found = aCustomer.Find(ID);
             if (aCustomer.Email != "harryhuang@gmail.com")
             {
@@ -171,7 +171,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ID = 2;
+            Int32 ID = 3;
             Found = aCustomer.Find(ID);
             if (aCustomer.Pass != "lol")
             {
@@ -187,7 +187,7 @@ namespace Testing1
             clsCustomer aCustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ID = 2;
+            Int32 ID = 3;
             Found = aCustomer.Find(ID);
             if (aCustomer.Active != true)
             {
@@ -246,7 +246,7 @@ namespace Testing1
         {
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
-            string Name = "aaaa";
+            Name = Name.PadRight(49, 'a');
             Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
@@ -257,7 +257,7 @@ namespace Testing1
         {
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
-            string Name = "aaaaaa";
+            Name = Name.PadRight(50, 'a');
             Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
@@ -280,7 +280,7 @@ namespace Testing1
         {
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
-            string Name = "aaa";
+            Name = Name.PadRight(25, 'a');
             Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreEqual(Error, "");
 
@@ -291,7 +291,7 @@ namespace Testing1
         {
             clsCustomer aCustomer = new clsCustomer();
             string Error = "";
-            string Name = "aaaaaaa";
+            Name = Name.PadRight(51, 'a');
             Error = aCustomer.Valid(Name, Email, Pass, DateAdded);
             Assert.AreNotEqual(Error, "");
 
